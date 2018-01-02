@@ -1,0 +1,15 @@
+{
+    "extends": [
+        "standard",
+        "standard-jsx"
+    ],
+    "rules": {
+        "space-before-function-paren": 1,
+        "no-debugger": 0
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "jest": true
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "ui/**/*.js",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/public/**"
+  ],
+  "moduleNameMapper": {
+    ".*\\.less$": "<rootDir>/ui/tests/stylesMock.js"
+  }
+}
