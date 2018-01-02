@@ -3,6 +3,8 @@ import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import {Link} from 'react-router-dom'
+import {toggleDrawer} from '../actions/draweractions'
+import {connect} from 'react-redux'
 
 class Header extends Component {
   render () {
@@ -17,4 +19,10 @@ class Header extends Component {
     )
   }
 }
-export default Header
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleDrawer:(dispatch) => dispatch(toggleDrawer)
+  }
+}
+
+export default connect(undefined, mapDispatchToProps)(Header)
