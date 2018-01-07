@@ -1,5 +1,5 @@
 import toggleDrawer from '../../reducers/drawerreducer'
-import { toggleDrawer as toggle } from '../../actions/draweractions'
+import draweractions from '../../actions/draweractions'
 import { expect } from 'chai'
 
 describe('Toggling the navigation drawer', () => {
@@ -12,14 +12,14 @@ describe('Toggling the navigation drawer', () => {
       const initialState = {
         isOpen: false
       }
-      expect(toggleDrawer(initialState, toggle())).to.deep.equal(result)
+      expect(toggleDrawer(initialState, draweractions.toggleDrawer())).to.deep.equal(result)
     })
 
     test('and the current state is not passed, it should toggle the drawer state isOpen to true', () => {
       const result = {
         isOpen: true
       }
-      expect(toggleDrawer(undefined, toggle())).to.deep.equal(result)
+      expect(toggleDrawer(undefined, draweractions.toggleDrawer())).to.deep.equal(result)
     })
   })
 
