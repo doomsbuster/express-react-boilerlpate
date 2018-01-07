@@ -1,6 +1,6 @@
 import React from 'react'
 import chai from 'chai'
-import Enzyme, { shallow } from 'enzyme'
+import Enzyme, { mount, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Header from '../../containers/Header'
 import AppBar from 'material-ui/AppBar'
@@ -30,7 +30,7 @@ describe('When Header component is rendered', () => {
 
   test('it should render AppBar which has title \'Express React Boilerplate\'', () => {
     let title = 'Express React Boilerplate'
-    chai.expect(wrapper.find(AppBar).props().title).to.equal(title)
+    chai.expect(wrapper.dive().find(AppBar).props().title).to.equal(title)
   })
 
   test('it should render the Drawer', () => {
@@ -39,10 +39,13 @@ describe('When Header component is rendered', () => {
   })
 
   test('it should render Drawer with two MenuItems', () => {
-    chai.expect(wrapper.find(Drawer).children()).to.have.lengthOf(2)
-    chai.expect(wrapper.find(Drawer).find(MenuItem)).to.have.lengthOf(2)
+    chai.expect(wrapper.dive().find(Drawer).children()).to.have.lengthOf(2)
+    chai.expect(wrapper.dive().find(Drawer).find(MenuItem)).to.have.lengthOf(2)
   })
 
+  test('it should return the toggleDrawer function exists', () => {
+    chai.expect(wrapper.props().toggleDrawer).to.exist
+  })
   test('it should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   })

@@ -19,12 +19,16 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+<<<<<<< HEAD
         "children": <div
           className={undefined}
           id="root"
         >
           <b />
         </div>,
+=======
+        "children": <Connect(b) />,
+>>>>>>> 3c6933950e6ba4b872bc24c86c61b41d0dd29cf4
         "muiTheme": Object {
           "appBar": Object {
             "color": "#00bcd4",
@@ -446,6 +450,7 @@ ShallowWrapper {
       "rendered": Object {
         "instance": null,
         "key": undefined,
+<<<<<<< HEAD
         "nodeType": "host",
         "props": Object {
           "children": <b />,
@@ -1411,6 +1416,13 @@ ShallowWrapper {
           "type": [Function],
         },
         "type": "div",
+=======
+        "nodeType": "class",
+        "props": Object {},
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+>>>>>>> 3c6933950e6ba4b872bc24c86c61b41d0dd29cf4
       },
       "type": [Function],
     },
@@ -1420,12 +1432,16 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+<<<<<<< HEAD
           "children": <div
             className={undefined}
             id="root"
           >
             <b />
           </div>,
+=======
+          "children": <Connect(b) />,
+>>>>>>> 3c6933950e6ba4b872bc24c86c61b41d0dd29cf4
           "muiTheme": Object {
             "appBar": Object {
               "color": "#00bcd4",
@@ -1847,6 +1863,7 @@ ShallowWrapper {
         "rendered": Object {
           "instance": null,
           "key": undefined,
+<<<<<<< HEAD
           "nodeType": "host",
           "props": Object {
             "children": <b />,
@@ -1864,6 +1881,13 @@ ShallowWrapper {
             "type": [Function],
           },
           "type": "div",
+=======
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+>>>>>>> 3c6933950e6ba4b872bc24c86c61b41d0dd29cf4
         },
         "type": [Function],
       },
