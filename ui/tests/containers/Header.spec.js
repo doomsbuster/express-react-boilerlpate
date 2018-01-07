@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React from 'react'
 import chai from 'chai'
 import Enzyme, { shallow } from 'enzyme'
@@ -63,23 +64,20 @@ describe('When Header component is rendered it', () => {
    * IMPORTANT - Special Case: Testing connected comonents and ensuring that the dispatch actions are called with correct actions
    * In order to test if user events are resulting in the dispatch of the correct actions you can do the following:
    * 1. Export `mapDispatchToProps` and use `inject-loader` to test that function see https://medium.com/@nantoaqui/testing-redux-connected-components-38e3be353456
-   * 2. Override and spy the `dispatch` method on the `redux-mock-store` to assert that `mapDispatchToProps` dispatched the correct action
+   * 2. Override and spy the `dispatch` method on the `redux-mock-store` to assert that `mapDispatchToProps` dispatched the correct action.
+   * If you modify the way you export your action creators then you are able to spy on the dispatched action to make assertions on it.
    *
    * I prefer the second method since it avoid un-necessary export of the `mapDispatchToProps` method.
    */
-  it('should call toggleDrawer and dispatch spy action', () => {
+  it('should call toggleDrawer and dispatch action', () => {
     const spy = sinon.spy(store, 'dispatch')
-    const spy2 = sinon.stub(draweractions, 'toggleDrawer').callsFake(() => {
-      return {
-        type: 'TOGGLE_DRAWER'
-      }
-    })
+    const toggleDrawerSpy = sinon.spy(draweractions, 'toggleDrawer')
     const wrap = shallow(<Header store={store} />)
     wrap.dive().find('#button').simulate('click')
-    chai.expect(spy.calledWith(draweractions.toggleDrawer())).to.be.true // eslint-disable-line no-unused-expressions
-    // chai.expect(spy.calledWith(toggleDrawer())).to.be.true // eslint-disable-line no-unused-expressions
+    chai.expect(spy.calledWith(draweractions.toggleDrawer())).to.be.true
+    chai.expect(toggleDrawerSpy.called).to.be.true
     spy.restore()
-    spy2.restore()
+    toggleDrawerSpy.restore()
   })
 
   it('should match the snapshot', () => {
@@ -134,7 +132,7 @@ describe('Given the header is pure presentational component it', () => {
   it('should call justSomeInternalFunctionThatCallsOtherInternalFunction()', () => {
     const justSomeInternalFunctionSpy = sinon.spy(PresentationalHeader.prototype, 'justSomeInternalFunction')
     wrapperNoLifecycle.instance().justSomeInternalFunctionThatCallsOtherInternalFunction()
-    chai.expect(justSomeInternalFunctionSpy.called).to.be.true // eslint-disable-line
+    chai.expect(justSomeInternalFunctionSpy.called).to.be.true
     justSomeInternalFunctionSpy.restore()
   })
 
@@ -150,8 +148,8 @@ describe('Given the header is pure presentational component it', () => {
     const functionGetsCalledFromComponentDidMountSpy = sinon.spy(PresentationalHeader.prototype, 'functionGetsCalledFromComponentDidMount')
     const componentDidMountSpy = sinon.spy(PresentationalHeader.prototype, 'componentDidMount')
     shallow(<PresentationalHeader />)
-    chai.expect(functionGetsCalledFromComponentDidMountSpy.calledOnce).to.be.true // eslint-disable-line no-unused-expressions
-    chai.expect(componentDidMountSpy.calledOnce).to.be.true // eslint-disable-line no-unused-expressions
+    chai.expect(functionGetsCalledFromComponentDidMountSpy.calledOnce).to.be.true
+    chai.expect(componentDidMountSpy.calledOnce).to.be.true
     // Make sure you reset the object to original using restore for following tests
     functionGetsCalledFromComponentDidMountSpy.restore()
     componentDidMountSpy.restore()
