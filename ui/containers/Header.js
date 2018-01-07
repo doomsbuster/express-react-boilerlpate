@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { connect } from 'redux'
 
 class Header extends Component {
-  render () {
+  render() {
     return (
       <div id='header'>
         <AppBar id='appBar' title='Express React Boilerplate' />
@@ -17,4 +18,5 @@ class Header extends Component {
     )
   }
 }
+
 export default Header

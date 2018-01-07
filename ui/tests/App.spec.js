@@ -7,8 +7,9 @@ import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('When App is rendered', () => {
-  test('it should render the root component with ID=root', () => {
+  it('it should render the root component with ID=root', () => {
     const wrapper = shallow(<App />)
+    // eslint-disable-next-line no-unused-expressions
     chai.expect(wrapper.find('#root')).to.exist
     expect(wrapper.find(App)).toMatchSnapshot()
   })
