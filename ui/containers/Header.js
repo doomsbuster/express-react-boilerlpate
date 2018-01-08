@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import draweractions from '../actions/draweractions'
 import FlatButton from 'material-ui/FlatButton'
+// Importing CSS modules
+import styles from '../styles/components/header.less'
 
 /**
  * Notice that the class is exported as a non-default named export to improve testability. This allows you to test invocation of functions
@@ -38,9 +40,11 @@ export class Header extends Component {
   }
 
   whenMagicHandler (event) {
+    // Perform magic here, test it in isolation
   }
 
   onDanceHandler (event) {
+    // Dance here, test it in isolation
   }
 
   /**
@@ -49,18 +53,26 @@ export class Header extends Component {
    */
   componentDidMount () {
     this.functionGetsCalledFromComponentDidMount()
+    // In case you want to register DOM events, do them like such.
+    // window.addEventListener('onDance', this.onDanceHandler)
+  }
+
+  componentWillUnmount () {
+    // Unregister DOM events when component unmounts
+    // window.removeEventListener('onDance', this.onDanceHandler)
   }
 
   render () {
     return (
       <div id='header'>
-        <AppBar id='appBar' title='Express React Boilerplate' />
-        <Drawer id='drawer' open={this.props.isOpen}>
+        <AppBar id='appBar' title='Express React Boilerplate' className={styles.header} onLeftIconButtonClick={() => this.props.toggleDrawer()} />
+        <Drawer id='drawer' open={this.props.isOpen} docked={false} onRequestChange={() => this.props.toggleDrawer()}>
           <MenuItem><Link to='/about'>About</Link></MenuItem>
           <MenuItem><Link to='/demo'>Demo</Link></MenuItem>
         </Drawer>
         {/* Pay attention to the events `onClick` and `whenMagic`. `Header.spec.js` demonstrates us of enzyme to dispatch custom and well known events */}
-        <FlatButton id='button' label='My Button' onClick={() => this.props.toggleDrawer()} whenMagic={() => this.whenMagicHandler()} onDance={() => this.onDanceHandler()} />
+        {/* React's Synthetic events is all you would need in most cases. These are examples only to demonstrate a key concept of enzyme */}
+        <FlatButton id='button' label='Toggle Drawer' onClick={() => this.props.toggleDrawer()} whenMagic={() => this.whenMagicHandler()} onDance={() => this.onDanceHandler()} primary />
       </div>
     )
   }
@@ -68,8 +80,9 @@ export class Header extends Component {
 
 /**
  * When testing a Higher Order Component (HOC) esp. redux connected component you should test the following:
- * 1. The existing of the said `props` on the component.
- * 2. Simulate different values of the `prop` and validate the shallow rendering of your component, typically snapshotting it.
+ * 1. The existence of the particular `props` on the component.
+ * 2. Simulate different values of the `prop` and validate the shallow rendering of your component, typically snapshotting it. (use `enzyme.setProps()` and `enzyme.update()` to
+ * update and re-render your component, it will call `componentWillReceiveProps` lifecycle method.)
  * 3. Existing of CSS classes on the elements in the render tree of this component.
  *
  * Note that, it is not necessary to test and validate full rendering of child compoments since those tests belong to the tests for the
