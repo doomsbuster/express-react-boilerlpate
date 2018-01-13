@@ -1,0 +1,44 @@
+/*
+ * CssModule Definition:
+ * --------------------------------
+ * CSSModule recommends that in CSS Modules each class should have all the styles needed for that variant.
+ * This means that a particular style class should have all styles required for the element it will style rather than having
+ * a base class and a child class. See Glen Maddens blog on CSS Modules at https://glenmaddern.com/articles/css-modules
+ */
+ @fullWidth: 100%;
+ @fullHeight: 100%;
+
+ .fullSize {
+   width: @fullWidth;
+   height: @fullHeight;
+ }
+
+ .homeContainer {
+  // As a result of composition, two classes are applied on the element where .homeContainer was referenced.
+  // See the results of this composition below. You can also take the advantage of less modules however,
+  // <div id="home" class="_2RZ8UH0_y19zKwpLB0GneA _3KqXQOQg3cU5WOzgmo6uqz iUTS3pM5FX9zdOvnk1kNv"></div>
+  composes: displayFlex from '../main.less';
+
+  // Composing from the same module
+  composes: fullSize;
+  position: relative;
+}
+
+//----------------------------------------------------
+// Result of the composition
+//----------------------------------------------------
+
+// Module styles in .homeContainer
+// ._2RZ8UH0_y19zKwpLB0GneA {
+//     position: relative;
+// }
+
+// Composed style from main.less
+// ._3KqXQOQg3cU5WOzgmo6uqz {
+//     display: flex;
+// }
+
+// .iUTS3pM5FX9zdOvnk1kNv {
+//     width: 100%;
+//     height: 100%;
+// }

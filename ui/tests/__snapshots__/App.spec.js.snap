@@ -20,10 +20,11 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <div
-          className={undefined}
+          className="root"
           id="root"
         >
           <Connect(b) />
+          <b />
         </div>,
         "muiTheme": Object {
           "appBar": Object {
@@ -448,20 +449,34 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <Connect(b) />,
-          "className": undefined,
+          "children": Array [
+            <Connect(b) />,
+            <b />,
+          ],
+          "className": "root",
           "id": "root",
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": "div",
       },
       "type": [Function],
@@ -473,10 +488,11 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <div
-            className={undefined}
+            className="root"
             id="root"
           >
             <Connect(b) />
+            <b />
           </div>,
           "muiTheme": Object {
             "appBar": Object {
@@ -901,20 +917,34 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <Connect(b) />,
-            "className": undefined,
+            "children": Array [
+              <Connect(b) />,
+              <b />,
+            ],
+            "className": "root",
             "id": "root",
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": "div",
         },
         "type": [Function],

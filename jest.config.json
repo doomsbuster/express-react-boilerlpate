@@ -8,6 +8,12 @@
     "!**/public/**"
   ],
   "moduleNameMapper": {
-    ".*\\.less$": "<rootDir>/ui/tests/stylesMock.js"
-  }
+    ".*\\.(css|less)$": "identity-obj-proxy"
+  },
+  "testPathIgnorePatterns": [
+    "<rootDir>/node_modules",
+    "<rootDir>/public",
+    "<rootDir>/ui/images",
+    "<rootDir>/ui/styles"
+  ]
 }
