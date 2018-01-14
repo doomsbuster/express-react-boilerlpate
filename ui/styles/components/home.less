@@ -10,7 +10,7 @@
 
  .fullSize {
    width: @fullWidth;
-   height: @fullHeight;
+   height: ~"calc(100vh - 101px)"; // Less does math on Calc, special syntax to disable LESS preprocessing on Calc ~"calc()".
  }
 
  .homeContainer {
@@ -22,6 +22,7 @@
   // Composing from the same module
   composes: fullSize;
   position: relative;
+  background-color: beige;
 }
 
 //----------------------------------------------------

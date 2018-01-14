@@ -12,7 +12,8 @@ const Application = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Route exact path='/' component={App} />
+        {/* If you pass the prop exact=true here it will not load sub routes. You want to load the application home if the route doesn't match any path */}
+        <Route path='/' component={App} />
       </Router>
     </Provider>
   )

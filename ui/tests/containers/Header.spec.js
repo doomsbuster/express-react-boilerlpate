@@ -43,9 +43,9 @@ describe('When Header component is rendered it', () => {
     chai.expect(wrapper.find(Drawer)).to.exist
   })
 
-  it('should render Drawer with two MenuItems', () => {
-    chai.expect(wrapper.dive().find(Drawer).children()).to.have.lengthOf(2)
-    chai.expect(wrapper.dive().find(Drawer).find(MenuItem)).to.have.lengthOf(2)
+  it('should render Drawer with 3 MenuItems', () => {
+    chai.expect(wrapper.dive().find(Drawer).children()).to.have.lengthOf(3)
+    chai.expect(wrapper.dive().find(Drawer).find(MenuItem)).to.have.lengthOf(3)
   })
 
   it('should have a prop named isOpen', () => {
