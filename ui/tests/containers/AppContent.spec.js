@@ -7,6 +7,8 @@ import chai from 'chai'
 // Use memory router for non browser environments and tests
 import { MemoryRouter } from 'react-router'
 import { Route } from 'react-router-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -26,7 +28,9 @@ describe('Given AppComponent is rendered', () => {
     // Tests that a specfic route loads correct react component
     wrapper = mount(
       <MemoryRouter initialEntries={['/', '/about']} initialIndex={0}>
-        <AppContent />
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+          <AppContent />
+        </MuiThemeProvider>
       </MemoryRouter>
     )
     chai.expect(wrapper.find('.homeContainer')).to.have.lengthOf(1)

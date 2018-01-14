@@ -66,7 +66,7 @@ module.exports = {
       title: 'Express React Boilerplate'
     }),
     new ExtractTextPlugin({
-      filename: "[name].[chunkhash].css"
+      filename: '[name].[chunkhash].css'
     })
   ]
 }

@@ -7,7 +7,11 @@
  */
  @fullWidth: 100%;
  @fullHeight: 100%;
+ @margin16: 16px;
 
+ * {
+   box-sizing: border-box;
+ }
  .fullSize {
    width: @fullWidth;
    height: ~"calc(100vh - 101px)"; // Less does math on Calc, special syntax to disable LESS preprocessing on Calc ~"calc()".
@@ -22,7 +26,7 @@
   // Composing from the same module
   composes: fullSize;
   position: relative;
-  background-color: beige;
+  background-color: #f2f2f2;
 }
 
 //----------------------------------------------------
@@ -43,3 +47,45 @@
 //     width: 100%;
 //     height: 100%;
 // }
+
+.compRight {
+  width: 30%;
+}
+
+.compLeft {
+  width: 70%;
+  height: @fullHeight;
+  background-color: #e5e5e5;
+  padding: @margin16;
+}
+
+.demo1 {
+  height: 50%;
+  width: @fullWidth;
+  position: relative;
+  background-color: white;
+  border-radius: 2px;
+  padding: @margin16;
+
+}
+
+.demo2 {
+  composes: demo1;
+  background-color: beige;
+}
+
+.demoData {
+  composes: demo1;
+  margin-top: @margin16;
+}
+
+.bottomRight {
+  position: absolute;
+  right: @margin16;
+  bottom: @margin16;
+}
+
+.image {
+  height:~"calc(100% - 3px)";
+  width: @fullWidth;
+}
