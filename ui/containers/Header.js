@@ -66,7 +66,7 @@ export class Header extends Component {
     return (
       <div id='header'>
         <AppBar id='appBar' title='Express React Boilerplate' className={styles.header} onLeftIconButtonClick={() => this.props.toggleDrawer()} />
-        <Drawer id='drawer' open={this.props.isOpen} docked={false} onRequestChange={() => this.props.toggleDrawer()}>
+        <Drawer id='drawer' open={this.props.isOpen} docked={false} onRequestChange={() => this.props.toggleDrawer()} className={styles.header}>
           <MenuItem><Link to='/'>Home</Link></MenuItem>
           <MenuItem><Link to='/about'>About</Link></MenuItem>
           <MenuItem><Link to='/demo'>Demo</Link></MenuItem>

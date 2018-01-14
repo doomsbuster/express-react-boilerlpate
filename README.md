@@ -102,6 +102,219 @@ This command will watch and run your tests everytime you change a file.
 
 That's it! Have fun.
 
+## Some special cases
+
+### Using `enzyme-to-json` and its `toJson` helper
+The `enzyme-to-json` module provides standard serializer for snapshot testing. A little lesser known fact about it is this helper function called `toJson`. In addition to providing an options object to get finer control over what gets serialized, its job is to simplyfiy the serialization of your component's snapshot. Let's take an example of what it does and what it looks like.
+
+
+#### Test that does not use `toJson`
+
+```
+/* eslint-disable no-unused-expressions */
+import React from 'react'
+import chai from 'chai'
+import Enzyme, { shallow } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+import Home from '../../components/Home'
+
+Enzyme.configure({ adapter: new Adapter() })
+
+describe('When Home component renders', () => {
+  let wrapper
+  beforeEach(() => {
+    wrapper = shallow(<Home />)
+  })
+
+  it('should match the snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  afterEach(() => {
+    wrapper.unmount()
+  })
+})
+```
+
+#### Snapshot file
+Take a look at how your snapshot file looks
+```
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When Home component renders should match the snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <b />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <b
+          id="demoLeft"
+        />,
+        <b
+          id="demoRight"
+        />,
+      ],
+      "className": "homeContainer",
+      "id": "home",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "id": "demoLeft",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "id": "demoRight",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <b
+            id="demoLeft"
+          />,
+          <b
+            id="demoRight"
+          />,
+        ],
+        "className": "homeContainer",
+        "id": "home",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "id": "demoLeft",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "id": "demoRight",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+```
+
+#### Test that uses `toJson` helper to save snapshots
+Now let's take a look at the snapshot when we use the `toJson` helper. Note, only changed lines shown for brevity.
+
+```
+/* eslint-disable no-unused-expressions */
+import toJson from 'enzyme-to-json'
+
+describe('When Home component renders', () => {
+  it('should match the snapshot', () => {
+    expect(toJson(wrapper)).toMatchSnapshot()
+  })
+})
+```
+
+#### Snapshot File
+Neat right, it provides you a simplified and a neater view of your components snapshot, while providing options to configure serialization of specific nodes.
+```
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When Home component renders should match the snapshot 1`] = `
+<div
+  className="homeContainer"
+  id="home"
+>
+  <b
+    id="demoLeft"
+  />
+  <b
+    id="demoRight"
+  />
+</div>
+`;
+```
+
+
+###  Mocking CSS, images and other assets for Jest Testing
+If you are using CSS Modules and loading images and other assets dynamically, then while unit testing with jest, you will receive errors compiling CSS and loading other dynamic assets. The reason for this is Jest does not understand the webpack context and pre-processing while running your tests.
+
+Worse yet, if you want to perform assertions on presence of CSS classes while using CSS Modules, you are out of luck, since Jest / enzyme snapshots have no context of real class names. Remember, CSS Modules hashes out style names to avoid style conflicts between modules?
+
+**Solution**: There is a very neat method Jest provides to get around this problem. It's called `moduleNameMapper`. This configuration object, takes a map of globbing patterns that match web assets and map them to a `resolver` typically a mock / proxy that stubs the requested module out. Take a look at the `jest.config.json` in this project to understand how it works. The `identity-obj-proxy` module does a great job at stubbing CSS and Less assets and supports SASS as well.
+
+### CSS Modules
+CSS Modules are a great new way to modularize your CSS and structure your code into **meaningful and truly reusable** classes. CSS Modules promotes modularity through three basic concepts:
+
+- Composing CSS rules
+- Composing CSS rules across CSS files
+- Single responsibility modules: Composition is powerful because it lets you describe what an element is, not what styles make it up. What this means is, if an element in your DOM needs to be styled, a single CSS class should describe the style of that element. You can compose several other style rules into the style rules for this element. Let's take an example
+
+See [Glen Maddern's article on CSS Modules](https://glenmaddern.com/articles/css-modules) which has indepth details about CSS Modules.
+
+#### Gotchas
+While it might sound straight forward in theory, there are some Gotchas that you should be aware of
+
+**1. Using Less Variables**
+When you compose a rule from another external file in which the class name definitions make use of Less variables, those variables aren't evaluated. We need to use the `post-css-values` plugin in order to use variables with CSS modules
+
+**2. Using `localIdentName` for compiled CSS**
+The `localIdentName` option for the `css-loader` in Webpack config is used to define the pattern in which the CSS class names are generated when CSS Modules are compiled. For the development configuration, it is easier if the compiled hash has the real class name and module name. Check out the `webpack.dev.config.js` and `webpack.prod.config.js` to see a sample of how CSS class name generation can be controlled.
+
+In production mode, just keeping a base64 hash as class names will reduce the CSS bundle size significantly.
+
 ## What does it not provide?
 The project does not come with test coverage for all files as they are expected to be removed or different for your projects. Samples are for demonstration of the concept and the pattern only.
 

@@ -20,7 +20,6 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <div
-          className="root"
           id="root"
         >
           <Connect(b) />
@@ -453,7 +452,6 @@ ShallowWrapper {
             <Connect(b) />,
             <b />,
           ],
-          "className": "root",
           "id": "root",
         },
         "ref": null,
@@ -488,7 +486,6 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <div
-            className="root"
             id="root"
           >
             <Connect(b) />
@@ -921,7 +918,6 @@ ShallowWrapper {
               <Connect(b) />,
               <b />,
             ],
-            "className": "root",
             "id": "root",
           },
           "ref": null,

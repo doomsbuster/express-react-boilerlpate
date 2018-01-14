@@ -4,26 +4,23 @@
  * CSSModule recommends that in CSS Modules each class should have all the styles needed for that variant.
  * This means that a particular style class should have all styles required for the element it will style rather than having
  * a base class and a child class. See Glen Maddens blog on CSS Modules at https://glenmaddern.com/articles/css-modules
+ *
  */
- @fullWidth: 100%;
- @fullHeight: 100%;
- @margin16: 16px;
 
- * {
-   box-sizing: border-box;
- }
- .fullSize {
-   width: @fullWidth;
-   height: ~"calc(100vh - 101px)"; // Less does math on Calc, special syntax to disable LESS preprocessing on Calc ~"calc()".
- }
+@fullWidth: 100%;
+@fullHeight: 100%;
+@margin16: 16px;
+.fullSize {
+  width: @fullWidth;
+  height: ~"calc(100vh - 101px)"; // Less does math on Calc, special syntax to disable LESS preprocessing on Calc ~"calc()".
+}
 
- .homeContainer {
+.homeContainer {
   // As a result of composition, two classes are applied on the element where .homeContainer was referenced.
   // See the results of this composition below. You can also take the advantage of less modules however,
   // <div id="home" class="_2RZ8UH0_y19zKwpLB0GneA _3KqXQOQg3cU5WOzgmo6uqz iUTS3pM5FX9zdOvnk1kNv"></div>
   composes: displayFlex from '../main.less';
-
-  // Composing from the same module
+  composes: fontFamily from '../themes/fonts.less'; // Composing from the same module
   composes: fullSize;
   position: relative;
   background-color: #f2f2f2;
@@ -32,7 +29,6 @@
 //----------------------------------------------------
 // Result of the composition
 //----------------------------------------------------
-
 // Module styles in .homeContainer
 // ._2RZ8UH0_y19zKwpLB0GneA {
 //     position: relative;
@@ -66,7 +62,6 @@
   background-color: white;
   border-radius: 2px;
   padding: @margin16;
-
 }
 
 .demo2 {
@@ -86,6 +81,14 @@
 }
 
 .image {
-  height:~"calc(100% - 3px)";
+  height: ~"calc(100% - 3px)";
   width: @fullWidth;
+}
+
+.paragraph {
+  composes: paragraph from '../themes/fonts.less';
+}
+
+.heading {
+  composes: heading from '../themes/fonts.less';
 }

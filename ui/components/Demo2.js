@@ -7,7 +7,7 @@ class Demo2 extends React.Component {
   render () {
     return (
       <div id='demo2' className={s.demo2}>
-        <h2>Demo 2 Component</h2>
+        <h2 className={s.heading}>Demo 2 Component</h2>
         <Link to='/demo/1'><RaisedButton label='Demo Route 1' className={s.bottomRight} primary /></Link>
       </div >
     )

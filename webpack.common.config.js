@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -24,26 +23,6 @@ module.exports = {
         }
       },
       {
-        test: /\.(less|css)$/,
-        include: path.resolve(__dirname, 'ui/styles'),
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
-                localIndentName: '[name]__[local]--[hash:base64:5]'
-              }
-            },
-            {
-              loader: 'less-loader'
-            }
-          ]
-        })
-      },
-      {
         test: /\.(png|jpe?g|svg|svgz?|gif|woff|woff2)$/gi,
         exclude: /node_modules/,
         include: path.resolve(__dirname, 'ui/images'),
@@ -64,9 +43,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'ui/index.ejs',
       title: 'Express React Boilerplate'
-    }),
-    new ExtractTextPlugin({
-      filename: '[name].[chunkhash].css'
     })
   ]
 }

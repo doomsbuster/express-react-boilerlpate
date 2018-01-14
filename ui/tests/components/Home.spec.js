@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react'
-import chai from 'chai'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
+import toJson from 'enzyme-to-json'
 
 import Home from '../../components/Home'
 
@@ -15,8 +15,7 @@ describe('When Home component renders', () => {
   })
 
   it('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
-    chai.expect(true).to.be.true
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 
   afterEach(() => {

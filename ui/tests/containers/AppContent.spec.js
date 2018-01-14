@@ -8,7 +8,8 @@ import chai from 'chai'
 import { MemoryRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import toJson from 'enzyme-to-json'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -61,6 +62,6 @@ describe('Given AppComponent is rendered', () => {
 
     // Be careful that if you save a snapshot when using `mount` on`MemoryRouter` jest tests will be significantly slow due to the size of the snapshot.
     // Notice, how I am diving straight into the Switch component and testing that against my components snapshot instead.
-    expect(wrapper).toMatchSnapshot()
+    expect(toJson(wrapper)).toMatchSnapshot()
   })
 })
