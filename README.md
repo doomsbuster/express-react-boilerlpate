@@ -44,12 +44,17 @@ This boilerplate provides pre-configured:
 - `.editorconfig` for consistent editor configurations.
 
 ## How to install?
-Getting started with this boilerplate is easy.
+Getting started with this boilerplate is easy. There are two ways to get this kickstart
 
 ### Installing manually
-Clone this repo on your workstation
+Clone this repo on your workstation.
 
     git clone https://github.com/doomsbuster/express-react-boilerplate.git
+
+### Installing from `npm` registry
+You can install this module from the npm registry by running the following command
+
+    npm install express-react-kickstart
 
 ## Getting Started
 Once you have installed the boilerplate, running it is easy:
