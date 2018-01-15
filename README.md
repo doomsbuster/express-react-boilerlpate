@@ -59,6 +59,10 @@ You can install this module from the npm registry by running the following comma
 ## Getting Started
 Once you have installed the boilerplate, running it is easy:
 
+Copy the kickstart from `node_modules` to your test directory
+
+  cp -R ./node_modules/express-react-kickstart/* .
+
 Run
 
     npm install

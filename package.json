@@ -1,6 +1,6 @@
 {
   "name": "express-react-kickstart",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple express react kickstart boilerplate.",
   "main": "app.js",
   "scripts": {
@@ -25,6 +25,28 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/doomsbuster/express-react-boilerlpate.git"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard",
+      "standard-jsx"
+    ],
+    "rules": {
+      "space-before-function-paren": 1,
+      "no-debugger": 0
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true
+    }
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react",
+      "minify"
+    ]
   },
   "dependencies": {
     "axios": "^0.17.1",
