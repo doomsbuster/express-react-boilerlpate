@@ -44,22 +44,15 @@ This boilerplate provides pre-configured:
 - `.editorconfig` for consistent editor configurations.
 
 ## How to install?
-Getting started with this boilerplate is easy. There are two ways to install and use it
+Getting started with this boilerplate is easy.
 
 ### Installing manually
 Clone this repo on your workstation
 
     git clone https://github.com/doomsbuster/express-react-boilerplate.git
 
-### Installing as a node module
-Boilerplate is also available as module from `npm` registry
-
 ## Getting Started
 Once you have installed the boilerplate, running it is easy:
-
-Copy the package by running the following command in the directory where you installed the module
-
-    cp -R ./node_modules/express-react-boilerplate/* .
 
 Run
 
@@ -97,12 +90,12 @@ This command will watch and run your tests everytime you change a file.
 
 > **Note on code coverage**
 >
-> Jest if fully configured to provide `istanbul` coverage for all files within the project. Typical configurations often only provide coverage for modules that have corresponding tests.
+> Jest is fully configured to provide `istanbul` coverage for all files within the project. Typical configurations often only provide coverage for modules that have corresponding tests.
 >
 
 That's it! Have fun.
 
-## Few things you should know
+## Just for your knowledge
 
 ### Using `enzyme-to-json` and its `toJson` helper
 The `enzyme-to-json` module provides standard serializer for snapshot testing. A little lesser known fact about it is this helper function called `toJson`. In addition to providing an options object to get finer control over what gets serialized, its job is to simplyfiy the serialization of your component's snapshot. Let's take an example of what it does and what it looks like.
@@ -322,4 +315,4 @@ The project does not come with test coverage for all files as they are expected 
 Fork the repo and submit a pull request.
 
 ## License
-[Mr. Doomsbuster](https://ashishdesai.com) doesn't care about attribution. All source code is license under [Do What The Fuck You Want To (WTFPL)](https://ashishdesai.com/license.txt) public license.
+[Mr. Doomsbuster](https://ashishdesai.com) doesn't care about attribution. All source code is licensed under [Do What The Fuck You Want To (WTFPL)](https://ashishdesai.com/license.txt) public license.
