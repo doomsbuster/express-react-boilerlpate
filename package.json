@@ -1,6 +1,6 @@
 {
   "name": "express-react-kickstart",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple express react kickstart boilerplate.",
   "main": "app.js",
   "scripts": {
