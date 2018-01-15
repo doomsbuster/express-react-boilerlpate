@@ -1,7 +1,7 @@
 {
-  "name": "express-react-kickstart",
+  "name": "express-react-boilerplate",
   "version": "0.0.1",
-  "description": "Simple Express React Microfrontend Boilerplate",
+  "description": "Simple Express React micro-frontend boilerplate",
   "main": "app.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production LOG_LEVEL=info node app.js",
@@ -22,7 +22,12 @@
     "expressjs react boilerplate"
   ],
   "author": "Mr. Doomsbuster",
+  "homepage": "https://ashishdesai.com",
   "license": "WTFPL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doomsbuster/express-react-boilerlpate.git"
+  },
   "dependencies": {
     "axios": "^0.17.1",
     "express": "^4.16.2",
