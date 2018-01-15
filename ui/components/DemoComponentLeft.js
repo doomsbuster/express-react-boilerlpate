@@ -1,6 +1,7 @@
 import React from 'react'
 import DemoPath from './DemoPath'
 import DemoData from './DemoData'
+import DemoDataContainer from '../containers/DemoDataContainer'
 import s from '../styles/components/home.less'
 
 class DemoComponentLeft extends React.Component {
@@ -8,7 +9,7 @@ class DemoComponentLeft extends React.Component {
     return (
       <div id='compLeft' className={s.compLeft}>
         <DemoPath />
-        <DemoData />
+        <DemoDataContainer />
       </div >
     )
   }

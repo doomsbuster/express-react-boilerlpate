@@ -31,7 +31,11 @@ describe('Given that home page is loaded with DemoData component', () => {
         },
         {
           type: DATA_RECEIVED,
-          data: results
+          data: 'mockdata'
+        },
+        {
+          type: DATA_FETCHING,
+          isFetching: false
         }
       ]
 

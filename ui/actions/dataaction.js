@@ -16,10 +16,10 @@ dataactions.dataReceived = (data) => {
 dataactions.loadData = () => {
   return (dispatch) => {
     dispatch(dataactions.dataFetching(true))
-    return axios.get('https://jsonplaceholder.typicode.com/posts').then((data) => {
-      dispatch(dataactions.dataReceived(data))
-    }).catch((error) => {
-      console.log(error)
+    return axios.get('https://jsonplaceholder.typicode.com/posts/1').then((data) => {
+      dispatch(dataactions.dataReceived(data.data))
+      dispatch(dataactions.dataFetching(false))
+    }).catch((error) => { // eslint-disable-line handle-callback-err
       dispatch(dataactions.dataFetching(false))
     })
   }

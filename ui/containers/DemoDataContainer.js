@@ -4,13 +4,13 @@ import dataactions from '../actions/dataaction'
 
 const mapStateToProps = (state) => {
   return {
-    appData: state
+    appData: state.appData.post
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadData: dispatch(dataactions.loadData())
+    loadData: () => dispatch(dataactions.loadData())
   }
 }
 

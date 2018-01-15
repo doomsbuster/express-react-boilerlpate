@@ -10,6 +10,9 @@ import { Route } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import toJson from 'enzyme-to-json'
+import configureMockStore from 'redux-mock-store'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 
 Enzyme.configure({ adapter: new Adapter() })
 
@@ -24,15 +27,28 @@ Enzyme.configure({ adapter: new Adapter() })
  */
 describe('Given AppComponent is rendered', () => {
   let wrapper
+  let store
+  let mockStore
+  beforeEach(() => {
+    mockStore = configureMockStore([thunk])
+    store = mockStore({
+      appData: {
+        post: {},
+        isFetching: false
+      }
+    })
+  })
 
   it('When path is "/" it should should render the home page', () => {
     // Tests that a specfic route loads correct react component
     wrapper = mount(
-      <MemoryRouter initialEntries={['/', '/about']} initialIndex={0}>
-        <MuiThemeProvider muiTheme={getMuiTheme()}>
-          <AppContent />
-        </MuiThemeProvider>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/', '/about']} initialIndex={0}>
+          <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <AppContent />
+          </MuiThemeProvider>
+        </MemoryRouter>
+      </Provider>
     )
     chai.expect(wrapper.find('.homeContainer')).to.have.lengthOf(1)
   })
@@ -41,7 +57,7 @@ describe('Given AppComponent is rendered', () => {
     // Tests that a specific route loads correct react component
     wrapper = mount(
       <MemoryRouter initialEntries={['/', '/about']} initialIndex={1}>
-        <AppContent />
+        <AppContent store={store} />
       </MemoryRouter>
     )
     chai.expect(wrapper.find('#about')).to.have.lengthOf(1)
