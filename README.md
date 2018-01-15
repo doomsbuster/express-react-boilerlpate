@@ -49,7 +49,7 @@ Getting started with this boilerplate is easy. There are two ways to install and
 ### Installing manually
 Clone this repo on your workstation
 
-    git clone https://github.com/doomsbuster/express-react-microservice.git
+    git clone https://github.com/doomsbuster/express-react-boilerplate.git
 
 ### Installing as a node module
 Boilerplate is also available as module from `npm` registry
@@ -57,13 +57,13 @@ Boilerplate is also available as module from `npm` registry
 ## Getting Started
 Once you have installed the boilerplate, running it is easy:
 
+Copy the package by running the following command in the directory where you installed the module
+
+    cp -R ./node_modules/express-react-boilerplate/* .
+
 Run
 
     npm install
-
-Copy the package by running the following command in the directory where you installed the module
-
-    cp -R ./node_modules/express-react-microservice/* .
 
 Build the application using pre-configured `webpack`  bundler
 
@@ -102,7 +102,7 @@ This command will watch and run your tests everytime you change a file.
 
 That's it! Have fun.
 
-## Some special cases
+## Few things you should know
 
 ### Using `enzyme-to-json` and its `toJson` helper
 The `enzyme-to-json` module provides standard serializer for snapshot testing. A little lesser known fact about it is this helper function called `toJson`. In addition to providing an options object to get finer control over what gets serialized, its job is to simplyfiy the serialization of your component's snapshot. Let's take an example of what it does and what it looks like.
